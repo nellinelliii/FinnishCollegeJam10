@@ -12,7 +12,8 @@ public class Door : MonoBehaviour
     public void Open()
     {
         isOpen = true;
-        if (sr) sr.color = new Color(1, 1, 1, 0.2f); // fade = open
+        Debug.Log("Door opened!");
+        if (sr) sr.color = new Color(1, 1, 1, 0.2f);
         GetComponent<Collider2D>().enabled = false;
     }
 

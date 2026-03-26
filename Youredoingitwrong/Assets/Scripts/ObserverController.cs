@@ -10,17 +10,10 @@ public class ObserverController : MonoBehaviour
     public SpriteRenderer faceSprite;
     public DialogueDatabase db;
 
-    [Header("Face Sprites")]
-    public Sprite spriteFriendly;
-    public Sprite spriteDoubt;
-    public Sprite spriteJudgment;
-    public Sprite spriteBlank;
-
     [Header("Positions (set in Inspector per level)")]
-    public Transform positionEarly;   // near switch/solution
-    public Transform positionLate;    // near wrong spot
+    public Transform positionEarly;
+    public Transform positionLate;
 
-    // ── Internal ───────────────────────────────────────────────────────────
     private ObserverMood mood = ObserverMood.Friendly;
     private float idleTimer;
     private bool idleFired;
@@ -30,11 +23,6 @@ public class ObserverController : MonoBehaviour
     void Start()
     {
         int level = ValidationSystem.Instance.currentLevel;
-
-        // Position: early game near correct spot, late game near wrong spot
-        if (level >= 7 && positionLate != null) transform.position = positionLate.position;
-        else if (positionEarly != null) transform.position = positionEarly.position;
-
         SetMood(level >= 9 ? ObserverMood.Blank : ObserverMood.Friendly);
     }
 
@@ -44,19 +32,17 @@ public class ObserverController : MonoBehaviour
         TrackIdle();
     }
 
-    // ── Always face player ─────────────────────────────────────────────────
     void FacePlayer()
     {
         if (playerTransform == null) return;
+        if (faceSprite == null) return;
         float dx = playerTransform.position.x - transform.position.x;
         faceSprite.flipX = dx < 0;
     }
 
-    // ── Idle detection → Observer reacts if player stands still ───────────
     void TrackIdle()
     {
         if (Input.anyKey) { idleTimer = 0f; idleFired = false; return; }
-
         idleTimer += Time.deltaTime;
         if (idleTimer >= 6f && !idleFired)
         {
@@ -72,12 +58,10 @@ public class ObserverController : MonoBehaviour
             DialogueUI.Instance?.Show(entry.onIdle);
     }
 
-    // ── Called by LevelManager after puzzle evaluated ──────────────────────
     public void ReactToValidation(ValidationResult result)
     {
         int level = ValidationSystem.Instance.currentLevel;
 
-        // BODY LANGUAGE: mood driven by gameSaysCorrect, NOT truth
         ObserverMood bodyMood;
         if (level >= 9) bodyMood = ObserverMood.Blank;
         else if (result.gameSaysCorrect) bodyMood = level <= 3
@@ -89,31 +73,21 @@ public class ObserverController : MonoBehaviour
 
         SetMood(bodyMood);
 
-        // DIALOGUE: driven by gameSaysCorrect
         var entry = db?.Get(level);
         if (entry == null) return;
 
         DialogueLine line = result.gameSaysCorrect ? entry.onSolve : entry.onWrongAttempt;
-
         if (line != null && !string.IsNullOrWhiteSpace(line.text))
             DialogueUI.Instance?.Show(line);
     }
 
-    // ── Mood → sprite ──────────────────────────────────────────────────────
     public void SetMood(ObserverMood m)
     {
         mood = m;
-        faceSprite.sprite = m switch
-        {
-            ObserverMood.Friendly => spriteFriendly,
-            ObserverMood.Doubt => spriteDoubt,
-            ObserverMood.Judgment => spriteJudgment,
-            ObserverMood.Blank => spriteBlank,
-            _ => spriteFriendly
-        };
+        if (faceSprite == null) return;
+        // sprite switching — assign sprites in Inspector later
     }
 
-    // ── Late-game 1-frame position flicker ────────────────────────────────
     public IEnumerator FlickerPosition()
     {
         Vector3 origin = transform.position;
@@ -128,7 +102,6 @@ public class ObserverController : MonoBehaviour
         var entry = db?.Get(level);
         if (entry?.onWrongAttempt != null)
             DialogueUI.Instance?.Show(entry.onWrongAttempt);
-
         if (level >= 8) StartCoroutine(FlickerPosition());
     }
 }
