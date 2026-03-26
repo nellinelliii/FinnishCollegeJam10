@@ -1,4 +1,3 @@
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -38,13 +37,9 @@ public class PlayerController : MonoBehaviour
 
         Vector2Int nextPos = new Vector2Int(gridPos.x + dir.x, gridPos.y + dir.y);
 
-        // Check for wall
         if (GridManager.Instance.IsWall(nextPos)) return;
-
-        // Check for door
         if (DoorManager.Instance != null && DoorManager.Instance.IsDoorAt(nextPos)) return;
 
-        // Check for box
         Pushable box = GridManager.Instance.GetPushable(nextPos);
         if (box != null)
         {
@@ -52,7 +47,6 @@ public class PlayerController : MonoBehaviour
             if (!box.TryPush(boxTarget)) return;
         }
 
-        // Move player
         gridPos = new Vector3Int(nextPos.x, nextPos.y, 0);
         targetPos = new Vector2(gridPos.x, gridPos.y);
         isMoving = true;

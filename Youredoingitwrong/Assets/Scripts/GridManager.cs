@@ -65,7 +65,7 @@ public class GridManager : MonoBehaviour
         {
             LevelManager.Instance.OnPuzzleSolved();
         }
-        else
+        else if (!LevelManager.Instance.isSolved)
         {
             ObserverController.Instance?.OnPlayerWrongAttempt();
         }

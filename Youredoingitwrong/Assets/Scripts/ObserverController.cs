@@ -78,7 +78,8 @@ public class ObserverController : MonoBehaviour
         var entry = db?.Get(level);
         if (entry == null) return;
 
-        DialogueLine line = result.gameSaysCorrect ? entry.onSolve : entry.onWrongAttempt;
+        // Always use onSolve when puzzle is completed
+        DialogueLine line = entry.onSolve;
         if (line != null && !string.IsNullOrWhiteSpace(line.text))
             DialogueUI.Instance?.Show(line);
     }
@@ -92,8 +93,10 @@ public class ObserverController : MonoBehaviour
 
     public void OnPlayerWrongAttempt()
     {
+        Debug.Log("WrongAttempt called. cooldown: " + wrongCooldown);
         if (wrongCooldown > 0) return;
-        wrongCooldown = 4f;
+        if (LevelManager.Instance.isSolved) return;
+        wrongCooldown = 6f;
 
         int level = ValidationSystem.Instance.currentLevel;
         var entry = db?.Get(level);

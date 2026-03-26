@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [Header("Level Settings")]
     public int levelNumber = 1;
     public Door exitDoor;
-    public float transitionDelay = 1.5f;
+    public float transitionDelay = 4f;
 
     [Header("Level 10 Special")]
     public bool isLevel10 = false;
@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
             else
             {
                 idleTime = 0f;
-                DialogueUI.Instance?.Show("No.");
+                // silence — no dialogue on Level 10
             }
         }
     }
@@ -46,12 +46,10 @@ public class LevelManager : MonoBehaviour
         if (isLevel10) return;
         if (isSolved) return;
         isSolved = true;
-
-        Debug.Log("Puzzle solved! Loading next level...");
+        Debug.Log("isSolved set to TRUE");
 
         ValidationResult result = ValidationSystem.Instance.Evaluate(true);
         ObserverController.Instance?.ReactToValidation(result);
-
         exitDoor?.Open();
         StartCoroutine(LoadNextLevel());
     }
