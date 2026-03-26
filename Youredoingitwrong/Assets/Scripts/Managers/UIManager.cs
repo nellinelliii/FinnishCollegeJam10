@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("UIManager created!", this.gameObject);
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            
         }
         else
         {

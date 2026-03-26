@@ -1,0 +1,1 @@
+public enum ObserverMood { Friendly, Doubt, Judgment, Blank }
