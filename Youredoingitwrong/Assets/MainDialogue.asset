@@ -28,14 +28,14 @@ MonoBehaviour:
       cutAtPercent: 0
     onIdle:
       text: '"Push it onto the switch."'
-      delayBefore: 0.5
+      delayBefore: 1
       displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
   - levelNumber: 2
     onSolve:
       text: '"Yes."'
-      delayBefore: 0.8
+      delayBefore: 0.7
       displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
@@ -72,9 +72,9 @@ MonoBehaviour:
       cutAtPercent: 0
   - levelNumber: 4
     onSolve:
-      text: '"That worked. ...I think.."'
+      text: '"That worked. ...I think."'
       delayBefore: 0.9
-      displayTime: 2
+      displayTime: 3
       cutEarly: 0
       cutAtPercent: 0
     onWrongAttempt:
@@ -84,14 +84,14 @@ MonoBehaviour:
       cutEarly: 0
       cutAtPercent: 0
     onIdle:
-      text: '"Take your time.."'
+      text: '"Take your time."'
       delayBefore: 2
       displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
   - levelNumber: 5
     onSolve:
-      text: '"You''re doing it differently.."'
+      text: '"You''re doing it differently."'
       delayBefore: 1
       displayTime: 3
       cutEarly: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
       cutAtPercent: 0
   - levelNumber: 6
     onSolve:
-      text: '"That felt accidental.."'
+      text: '"That felt accidental."'
       delayBefore: 1.2
       displayTime: 2.5
       cutEarly: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
       cutEarly: 0
       cutAtPercent: 0
     onIdle:
-      text: '"I''m stil here."'
+      text: '"I''m still here."'
       delayBefore: 3
       displayTime: 2
       cutEarly: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
       cutEarly: 0
       cutAtPercent: 0
     onWrongAttempt:
-      text: '"Stop guessing."'
+      text: '"Keep guessing."'
       delayBefore: 1
       displayTime: 2
       cutEarly: 0
@@ -187,19 +187,19 @@ MonoBehaviour:
   - levelNumber: 10
     onSolve:
       text: 
-      delayBefore: 0.8
-      displayTime: 4
+      delayBefore: 0
+      displayTime: 0
       cutEarly: 0
       cutAtPercent: 0
     onWrongAttempt:
       text: 
-      delayBefore: 1
-      displayTime: 2
+      delayBefore: 0
+      displayTime: 0
       cutEarly: 0
       cutAtPercent: 0
     onIdle:
       text: 
-      delayBefore: 5
-      displayTime: 3
+      delayBefore: 0
+      displayTime: 0
       cutEarly: 0
       cutAtPercent: 0

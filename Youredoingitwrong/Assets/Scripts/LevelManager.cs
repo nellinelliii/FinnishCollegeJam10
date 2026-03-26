@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
             else
             {
                 idleTime = 0f;
-                // silence � no dialogue on Level 10
+                // silence — no dialogue on Level 10
             }
         }
     }
@@ -47,6 +47,8 @@ public class LevelManager : MonoBehaviour
         if (isSolved) return;
         isSolved = true;
         Debug.Log("isSolved set to TRUE");
+
+        AudioManager.Instance?.PlayChime();  // ← add this
 
         ValidationResult result = ValidationSystem.Instance.Evaluate(true);
         ObserverController.Instance?.ReactToValidation(result);
