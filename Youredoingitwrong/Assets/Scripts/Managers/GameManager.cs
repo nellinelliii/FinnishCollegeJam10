@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("GameManager created!", this.gameObject);
             Instance = this; //Asetetaan t‰m‰ GameManager-instanssiksi
-            DontDestroyOnLoad(gameObject); // Estet‰‰n GameManagerin tuhoutuminen scene-latauksissa
+            
         }
         else
         {

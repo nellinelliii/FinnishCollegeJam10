@@ -1681,9 +1681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d3367dfc7a88e42accd0f8b3f39175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  levelNumber: 3
+  levelNumber: 5
   exitDoor: {fileID: 395329064}
-  transitionDelay: 3
+  transitionDelay: 4
   isLevel10: 0
   isSolved: 0
 --- !u!114 &676451804

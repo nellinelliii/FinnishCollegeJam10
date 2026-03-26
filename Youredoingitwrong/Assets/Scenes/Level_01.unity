@@ -331,7 +331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1576,8 +1576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelNumber: 1
   exitDoor: {fileID: 395329064}
-  transitionDelay: 1.5
+  transitionDelay: 2
   isLevel10: 0
+  isSolved: 0
 --- !u!114 &676451804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,7 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObserverController
   playerTransform: {fileID: 920844026}
   faceSprite: {fileID: 793464326}
-  db: {fileID: 0}
+  db: {fileID: 11400000, guid: 407d8ecfa7b0ad94cbbb463dd25f8f0f, type: 2}
   positionEarly: {fileID: 1651378965}
   positionLate: {fileID: 1143752995}
 --- !u!212 &793464326

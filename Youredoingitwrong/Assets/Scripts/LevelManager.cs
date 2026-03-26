@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
 
     [Header("Level Settings")]
-    public int levelNumber = 1;          // Set this per scene
+    public int levelNumber = 1;
     public Door exitDoor;
     public float transitionDelay = 1.5f;
 
@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public bool isLevel10 = false;
     private float idleTime = 0f;
     private bool level10Solved = false;
+    public bool isSolved = false;
 
     void Awake()
     {
@@ -24,7 +25,6 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        // Level 10: doing NOTHING for 5 seconds = winning
         if (isLevel10 && !level10Solved)
         {
             bool playerMoving = Input.anyKey;
@@ -35,27 +35,25 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                idleTime = 0f; // reset if they try to do something
+                idleTime = 0f;
                 DialogueUI.Instance?.Show("No.");
             }
         }
     }
 
-    // Called by GridManager when all switches are pressed
     public void OnPuzzleSolved()
     {
-        if (isLevel10) return; // Level 10 handled separately
+        if (isLevel10) return;
+        if (isSolved) return;
+        isSolved = true;
 
-        bool isCorrect = true; // Real logic: switches pressed = correct
-        ValidationResult result = ValidationSystem.Instance.Evaluate(isCorrect);
+        Debug.Log("Puzzle solved! Loading next level...");
 
+        ValidationResult result = ValidationSystem.Instance.Evaluate(true);
         ObserverController.Instance?.ReactToValidation(result);
 
-        if (result.isCorrectSolution) // Real logic always opens the door
-        {
-            exitDoor?.Open();
-            StartCoroutine(LoadNextLevel());
-        }
+        exitDoor?.Open();
+        StartCoroutine(LoadNextLevel());
     }
 
     void SolveLevel10()
@@ -69,6 +67,7 @@ public class LevelManager : MonoBehaviour
     {
         yield return new WaitForSeconds(transitionDelay);
         int next = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log("Loading scene index: " + next);
         if (next < SceneManager.sceneCountInBuildSettings)
             SceneManager.LoadScene(next);
         else

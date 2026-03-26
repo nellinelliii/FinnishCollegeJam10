@@ -35,38 +35,171 @@ MonoBehaviour:
   - levelNumber: 2
     onSolve:
       text: '"Yes."'
-      delayBefore: 0.7
+      delayBefore: 0.8
       displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
     onWrongAttempt:
-      text: 
-      delayBefore: 0
-      displayTime: 0
+      text: '"The switch."'
+      delayBefore: 0.6
+      displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
     onIdle:
-      text: 
-      delayBefore: 0
-      displayTime: 0
+      text: '"You understand this."'
+      delayBefore: 1
+      displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
-  - levelNumber: 1
+  - levelNumber: 3
     onSolve:
-      text: '"Yes."'
-      delayBefore: 0.7
+      text: '"You understand."'
+      delayBefore: 1
       displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
     onWrongAttempt:
+      text: '"That''s not it."'
+      delayBefore: 0.6
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"You''ve done this before."'
+      delayBefore: 1.5
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 4
+    onSolve:
+      text: '"That worked. ...I think.."'
+      delayBefore: 0.9
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: '"That should be fine."'
+      delayBefore: 0.8
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"Take your time.."'
+      delayBefore: 2
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 5
+    onSolve:
+      text: '"You''re doing it differently.."'
+      delayBefore: 1
+      displayTime: 3
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: '"That should be fine."'
+      delayBefore: 0.9
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"..."'
+      delayBefore: 2.5
+      displayTime: 1.5
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 6
+    onSolve:
+      text: '"That felt accidental.."'
+      delayBefore: 1.2
+      displayTime: 2.5
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: '"Mm."'
+      delayBefore: 1
+      displayTime: 1.5
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"I''m stil here."'
+      delayBefore: 3
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 7
+    onSolve:
+      text: '"No. That''s not right."'
+      delayBefore: 0.7
+      displayTime: 3
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: '"Better."'
+      delayBefore: 1.1
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"..."'
+      delayBefore: 4
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 8
+    onSolve:
+      text: '"No."'
+      delayBefore: 0.6
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: '"Better."'
+      delayBefore: 1.3
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"Keep trying."'
+      delayBefore: 3.5
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 9
+    onSolve:
+      text: '"You didn''t do it like that before. Why are you changing it?"'
+      delayBefore: 0.8
+      displayTime: 4
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: '"Stop guessing."'
+      delayBefore: 1
+      displayTime: 2
+      cutEarly: 0
+      cutAtPercent: 0
+    onIdle:
+      text: '"..."'
+      delayBefore: 5
+      displayTime: 3
+      cutEarly: 0
+      cutAtPercent: 0
+  - levelNumber: 10
+    onSolve:
       text: 
-      delayBefore: 0
-      displayTime: 0
+      delayBefore: 0.8
+      displayTime: 4
+      cutEarly: 0
+      cutAtPercent: 0
+    onWrongAttempt:
+      text: 
+      delayBefore: 1
+      displayTime: 2
       cutEarly: 0
       cutAtPercent: 0
     onIdle:
       text: 
-      delayBefore: 0
-      displayTime: 0
+      delayBefore: 5
+      displayTime: 3
       cutEarly: 0
       cutAtPercent: 0

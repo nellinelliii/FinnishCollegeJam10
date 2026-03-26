@@ -17,6 +17,7 @@ public class ObserverController : MonoBehaviour
     private ObserverMood mood = ObserverMood.Friendly;
     private float idleTimer;
     private bool idleFired;
+    private float wrongCooldown = 0f;
 
     void Awake() => Instance = this;
 
@@ -30,6 +31,7 @@ public class ObserverController : MonoBehaviour
     {
         FacePlayer();
         TrackIdle();
+        if (wrongCooldown > 0) wrongCooldown -= Time.deltaTime;
     }
 
     void FacePlayer()
@@ -88,20 +90,24 @@ public class ObserverController : MonoBehaviour
         // sprite switching — assign sprites in Inspector later
     }
 
+    public void OnPlayerWrongAttempt()
+    {
+        if (wrongCooldown > 0) return;
+        wrongCooldown = 4f;
+
+        int level = ValidationSystem.Instance.currentLevel;
+        var entry = db?.Get(level);
+        if (entry?.onWrongAttempt != null)
+            DialogueUI.Instance?.Show(entry.onWrongAttempt);
+
+        if (level >= 8) StartCoroutine(FlickerPosition());
+    }
+
     public IEnumerator FlickerPosition()
     {
         Vector3 origin = transform.position;
         transform.position += new Vector3(Random.Range(-0.06f, 0.06f), 0, 0);
         yield return null;
         transform.position = origin;
-    }
-
-    public void OnPlayerWrongAttempt()
-    {
-        int level = ValidationSystem.Instance.currentLevel;
-        var entry = db?.Get(level);
-        if (entry?.onWrongAttempt != null)
-            DialogueUI.Instance?.Show(entry.onWrongAttempt);
-        if (level >= 8) StartCoroutine(FlickerPosition());
     }
 }

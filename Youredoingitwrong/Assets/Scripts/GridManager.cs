@@ -16,7 +16,6 @@ public class GridManager : MonoBehaviour
         Instance = this;
     }
 
-    // Called by Pushable objects on Start to register themselves
     public void RegisterPushable(Pushable p, Vector2Int pos)
     {
         pushables[pos] = p;
@@ -47,12 +46,13 @@ public class GridManager : MonoBehaviour
 
     public void OnPlayerMoved(Vector2Int pos)
     {
-        // Could trigger observer reaction here
-        //ObserverController.Instance?.OnPlayerMoved(pos);
+        // reserved for future use
     }
 
     void CheckSwitches()
     {
+        if (LevelManager.Instance.isSolved) return;
+
         bool allPressed = true;
         foreach (var kvp in switches)
         {
@@ -64,6 +64,10 @@ public class GridManager : MonoBehaviour
         if (allPressed && switches.Count > 0)
         {
             LevelManager.Instance.OnPuzzleSolved();
+        }
+        else
+        {
+            ObserverController.Instance?.OnPlayerWrongAttempt();
         }
     }
 }
